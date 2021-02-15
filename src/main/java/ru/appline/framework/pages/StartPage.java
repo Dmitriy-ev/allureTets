@@ -59,6 +59,7 @@ public class StartPage extends BasePage {
 	/**
 	 * нажимаем на кнопку закрыть coocke
 	 */
+	@Step("Кликаем по всплывыющему меню coocke")
 	public StartPage coocke() {
 		elementToBeVisible(coockeClose);
 		elementToBeClickable(coockeClose).click();

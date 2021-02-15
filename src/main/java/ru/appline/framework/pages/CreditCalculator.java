@@ -9,6 +9,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static ru.appline.framework.utils.MyAllureListener.addScreenshot;
+
+import io.qameta.allure.Step;
+
 public class CreditCalculator extends BasePage {
 
 	/**
@@ -46,6 +50,7 @@ public class CreditCalculator extends BasePage {
 	/**
 	 *iFrame 
 	 */
+	@Step("Переходим в iFrame")
 	public CreditCalculator switchToData() {
 		switchTo();
 		scrollToElementJs(calculator);
@@ -55,6 +60,7 @@ public class CreditCalculator extends BasePage {
 	/**
 	 *метод который проходится по первым данным 
 	 */
+	@Step("Заполняем поле {name}")
 	public CreditCalculator filling(String name, String data) {
 		WebElement elementData;
 		for (WebElement webElement : entryData) {
@@ -72,6 +78,7 @@ public class CreditCalculator extends BasePage {
 	/**
 	 *метод который проходится по вторым данным и делает клики
 	 */
+	@Step("Кликаем по {name}")
 	public CreditCalculator optionalServices(String name){
 		WebElement elementServices;
 		for (WebElement webElement : services) {
@@ -93,14 +100,17 @@ public class CreditCalculator extends BasePage {
 	/**
 	 *выполняем проверки 
 	 */
+	@Step("Выполняем проверку {name}")
 	public CreditCalculator checkFinalSum(String name, String price) {
 		scrollToElementJs(calculator);
 		WebElement finalSumElement;
 		for (WebElement webElement : finalSum) {
 			finalSumElement = webElement.findElement(By.xpath(".//span"));
 			if(finalSumElement.getText().contains(name)) {
+				
 				Assert.assertEquals("сумма поля: " + name + " не соответствует веденному числу",
 						price, webElement.getAttribute("innerText").replaceAll("[^,.0-9]+", ""));
+				addScreenshot();
 			}
 		}
 		return this;
