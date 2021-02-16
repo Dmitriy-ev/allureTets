@@ -110,7 +110,6 @@ public class CreditCalculator extends BasePage {
 				
 				Assert.assertEquals("сумма поля: " + name + " не соответствует веденному числу",
 						price, webElement.getAttribute("innerText").replaceAll("[^,.0-9]+", ""));
-				addScreenshot();
 			}
 		}
 		return this;

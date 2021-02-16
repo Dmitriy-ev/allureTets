@@ -20,4 +20,5 @@ public class MyAllureListener extends AllureJunit4 {
     public static byte[] addScreenshot() {
         return ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
     }
+    
 }

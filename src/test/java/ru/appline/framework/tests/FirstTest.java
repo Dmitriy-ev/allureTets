@@ -8,7 +8,7 @@ public class FirstTest extends BaseTests {
 
     @Test()
     @DisplayName("Оформление программы ипотека на готовое жилье")
-    public void startTest() throws InterruptedException {
+    public void startTest() {
         app.getStartPage()
         		.coocke()
                 .selectBaseMenu("Ипотека")
