@@ -1,7 +1,7 @@
 package ru.appline.framework.pages;
 
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchFrameException;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -53,13 +53,6 @@ public class BasePage {
 	}
 
 	/**
-	 *функция клика по элементу 
-	 */
-	protected void checked(WebElement element) {
-		js.executeScript("arguments[0].click();", element);
-	}
-
-	/**
 	 * Явное ожидание состояния кликабельности элемента
 	 */
 	protected WebElement elementToBeClickable(WebElement element) {
@@ -81,7 +74,7 @@ public class BasePage {
 	 *
 	 */
 	protected void fillInputField(WebElement field, String value) {
-		elementToBeVisible(field);
+		field.sendKeys(Keys.CONTROL + "a");
 		field.sendKeys(value);
 		try {
 			Thread.sleep(1000);
@@ -90,15 +83,15 @@ public class BasePage {
 		}
 	}
 
-	/**
-	 * переход между iFrame
-	 */
-	protected void switchTo() {
-		try
-		{
-			getDriver().switchTo().frame(0);
-		}catch (NoSuchFrameException e) {
-			e.printStackTrace();
+	protected void switchOptionServices(WebElement element, String flag) {
+		if (!element.getAttribute("aria-checked").equals(flag)) {
+			element.click();
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
+
 }

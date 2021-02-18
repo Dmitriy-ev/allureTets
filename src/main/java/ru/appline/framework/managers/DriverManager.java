@@ -10,28 +10,13 @@ import static ru.appline.framework.utils.PropConst.*;
  */
 public class DriverManager {
 
-	/**
-	 * Переменна для хранения объекта веб дравера
-	 * @see WebDriver
-	 */
 	private static WebDriver driver;
 
-	/**
-	 * Менеджер пропертей
-	 * @see TestPropManager#getTestPropManager()
-	 */
 	private static TestPropManager props = TestPropManager.getTestPropManager();
 
-	/**
-	 * Конструктор специально запривейтили (синглтон)
-	 * @see DriverManager#getDriver()
-	 */
 	private DriverManager() {
 	}
 
-	/**
-	 * Метод инициализирующий веб драйвер
-	 */
 	private static void initDriver() {
 		switch (props.getProperty(TYPE_BROWSER)) {
 		case "firefox":

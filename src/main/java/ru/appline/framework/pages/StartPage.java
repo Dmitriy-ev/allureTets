@@ -27,6 +27,7 @@ public class StartPage extends BasePage {
 	 */
 	@Step("Переход в главное меню {nameBaseMenu}")
 	public StartPage selectBaseMenu(String nameBaseMenu) {
+		coocke();
 		for (WebElement menuItem : menuBaseList) {
 			if (menuItem.getText().equalsIgnoreCase(nameBaseMenu)) {
 				action.moveToElement(menuItem).click().build().perform();
@@ -59,11 +60,9 @@ public class StartPage extends BasePage {
 	/**
 	 * нажимаем на кнопку закрыть coocke
 	 */
-	@Step("Кликаем по всплывыющему меню coocke")
-	public StartPage coocke() {
+	public void coocke() {
 		elementToBeVisible(coockeClose);
 		elementToBeClickable(coockeClose).click();
-		return this;
 
 	}
 
